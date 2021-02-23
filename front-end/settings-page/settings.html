@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="settings-page/setting.css">
+</head>
+
+<body>
+
+    <h1>Checkout.com Settings</h1>
+
+    <form id="setting-form">
+        <section>
+            <h2>Account Details</h2>
+
+            <div class="input-wrapper">
+                <label for="sk">Secret Key</label>
+                <input type="text" name="sk" id="sk" placeholder="sk_xxxx....">
+            </div>
+
+            <div class="input-wrapper">
+                <label for="pk">Public Key</label>
+                <input type="text" name="pk" id="pk" placeholder="pk_xxxx....">
+            </div>
+        </section>
+
+        <section>
+            <h2>Card Payments</h2>
+
+            <div class="input-wrapper check">
+                <input type="checkbox" id="3ds" name="3ds">
+                <label for="3ds">Use 3D Secure</label>
+            </div>
+
+            <div class="input-wrapper check">
+                <input type="checkbox" id="saved-cards" name="saved-cards">
+                <label for="saved-cards">Saved Cards</label>
+            </div>
+
+        </section>
+
+        <!-- <section>
+            <h2>Google Pay</h2>
+
+            <div class="input-wrapper">
+                <label for="google-id">Merchant Id</label>
+                <input type="text" name="google-id" id="google-id"
+                    placeholder="123456789">
+            </div>
+
+        </section>
+
+        <section>
+            <h2>Apple Pay</h2>
+
+            <div class="input-wrapper">
+                <label for="apple-id">Merchant Id</label>
+                <input type="text" name="apple-id" id="apple-id"
+                    placeholder="merchant.abc">
+            </div>
+
+            <div class="input-wrapper">
+                <label for="apple-cert">Certificate</label>
+                <input type="text" name="apple-cert" id="apple-cert"
+                    placeholder="/var/certs/apple.pem">
+            </div>
+
+            <div class="input-wrapper">
+                <label for="apple-key">Certificate Key</label>
+                <input type="text" name="apple-key" id="apple-key"
+                    placeholder="/var/certs/apple.key">
+            </div>
+
+        </section> -->
+
+        <button type="submit">Save</button>
+
+    </form>
+
+    <script src="settings-page/settings.js"></script>
+</body>
+
+</html>

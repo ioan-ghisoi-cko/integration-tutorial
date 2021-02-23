@@ -1,0 +1,16 @@
+{
+  "keys": {
+    "sk": "sk_test_0b9b5db6-f223-49d0-b68f-f6643dd4f808",
+    "pk": "pk_test_4296fd52-efba-4a38-b6ce-cf0d93639d8a"
+  },
+  "config": {
+    "3ds": false,
+    "saved-cards": false,
+    "google-id": null,
+    "apple-id": null,
+    "apple-cert": null,
+    "apple-key": null
+  },
+  "orders": [],
+  "savedCard": null
+}

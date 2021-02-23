@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout-page/checkout.css">
+</head>
+
+<body>
+    <section class="payment">
+        <h1>My Shop</h1>
+        <p class="path">Basket > Shipping > Review</p>
+
+        <div class="title">
+            <h2>Payments</h2>
+            <span>
+                <img src="checkout-page/images/visa.svg" alt="visa">
+                <img src="checkout-page/images/mastercard.svg" alt="visa">
+                <img src="checkout-page/images/american express.svg" alt="amex">
+            </span>
+        </div>
+
+        <!-- Checkout Frames -->
+        <div id="payment-form">
+            <div class="one-liner">
+                <div class="card-frame">
+                    <!-- The iFrame will render here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- List of saved cards -->
+        <div id="saved-card" style="display: none;"></div>
+
+        <button id="pay-button">PAY $256</button>
+
+    </section>
+
+    <section class="order">
+        <div class="order-details">
+            <h2>Order Details</h2>
+            <h3>1 x Dog toy</h3>
+        </div>
+
+        <p class="total">Total: $256</p>
+    </section>
+
+    <!-- Checkout.Frames CDN -->
+    <script src="https://cdn.checkout.com/js/framesv2.min.js"></script>
+    <script src="checkout-page/checkout.js"></script>
+</body>
+
+</html>

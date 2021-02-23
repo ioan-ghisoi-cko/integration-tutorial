@@ -1,0 +1,21 @@
+{
+  "name": "integration-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "live": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "checkout-sdk-node": "^1.0.19",
+    "express": "^4.17.1",
+    "ngrok": "^3.3.0",
+    "node-json-db": "^1.1.0",
+    "nodemon": "^2.0.6",
+    "open": "^7.3.0"
+  }
+}

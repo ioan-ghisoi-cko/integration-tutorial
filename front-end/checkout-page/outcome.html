@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Success Page</title>
+</head>
+
+<body>
+
+    <h2>OutCome Page</h2>
+
+    <div id="details"></div>
+</body>
+
+
+<script>
+
+    // When the page loads get the key from the DB
+    (function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('cko-session-id');
+
+        if (id) {
+            fetch(window.location.origin + "/getPayment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id }),
+            })
+                .then((response) => response.json())
+                .then((payment) => {
+                    console.log(payment)
+
+                    let p = document.createElement('p');
+                    if (payment.approved) {
+                        p.innerHTML = "Success Payment. Payment Id: " + payment.id;
+                    } else {
+                        p.innerHTML = "Your payment was declined. Payment Id: " + payment.id;
+                    }
+                    document.getElementById("details").appendChild(p)
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+        }
+    })();
+</script>
+
+</html>

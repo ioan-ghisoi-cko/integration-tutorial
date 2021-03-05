@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 const { JsonDB } = require("node-json-db");
 const { Config } = require("node-json-db/dist/lib/JsonDBConfig");
-const { Certificate } = require("crypto");
 
+// Use the Json file as DB
 let db = new JsonDB(new Config("./back-end/_database"));
 
 const router = express.Router();

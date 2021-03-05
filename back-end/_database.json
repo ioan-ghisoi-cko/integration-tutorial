@@ -4,13 +4,21 @@
     "pk": "pk_test_4296fd52-efba-4a38-b6ce-cf0d93639d8a"
   },
   "config": {
-    "3ds": false,
-    "saved-cards": false,
-    "google-id": null,
-    "apple-id": null,
-    "apple-cert": null,
-    "apple-key": null
+    "3ds": true,
+    "saved-cards": true,
+    "google-id": null
   },
-  "orders": [],
-  "savedCard": null
+  "orders": [
+    {
+      "timestamp": 1614873646320,
+      "reference": "228897371",
+      "id": "pay_o7ae3hoss4nuzdls7sdlm3o5pi",
+      "status": "Authorized"
+    }
+  ],
+  "savedCard": {
+    "id": "src_oheo4w6imdmuhiikjqpoj4ixte",
+    "last4": "4242",
+    "type": "Visa"
+  }
 }

@@ -4,7 +4,13 @@ const { JsonDB } = require("node-json-db");
 const { Config } = require("node-json-db/dist/lib/JsonDBConfig");
 const { Checkout } = require("checkout-sdk-node");
 
+// Use the Json file as DB
 let db = new JsonDB(new Config("./back-end/_database"));
+
+// Initialize the Checkout.com SDK
+const cko = new Checkout(db.getData("/keys/sk"), {
+  pk: db.getData("/keys/pk"),
+});
 
 const router = express.Router();
 
@@ -15,20 +21,26 @@ router.get("/checkout", (req, res) => {
   );
 });
 
-// Get the public key needed to initialize Frames
+// Show the 3DS Outcome Page
+router.get("/outcome", (req, res) => {
+  res.sendFile(path.join(__dirname, "../front-end/checkout-page/outcome.html"));
+});
+
 router.get("/getPublicKey", async (req, res) => {
   res.send({
     pk: await db.getData("/keys/pk"),
   });
 });
 
-// Get save card
+router.get("/getConfig", async (req, res) => {
+  res.send(await db.getData("/config"));
+});
+
 router.get("/getSaveCard", async (req, res) => {
   res.send(await db.getData("/savedCard"));
 });
 
 router.post("/pay", async (req, res) => {
-  const cko = new Checkout(db.getData("/keys/sk"));
   const use3DS = db.getData("/config/3ds");
   const saveCard = db.getData("/config/saved-cards");
 
@@ -79,10 +91,32 @@ router.post("/pay", async (req, res) => {
   res.send(payment);
 });
 
-router.post("/getPayment", async (req, res) => {
-  const ck = new Checkout(db.getData("/keys/sk"));
+router.post("/payGoogle", async (req, res) => {
   try {
-    let payment = await ck.payments.get(req.body.id);
+    let token = await cko.tokens.request({
+      token_data: {
+        protocolVersion: req.body.protocolVersion,
+        signature: req.body.signature,
+        signedMessage: req.body.signedMessage,
+      },
+    });
+
+    let payment = await cko.payments.request({
+      source: {
+        token: token.token,
+      },
+      amount: req.body.amount * 100,
+      currency: req.body.currency,
+      reference: req.body.reference,
+    });
+
+    db.push(`/orders[]`, {
+      timestamp: Date.now(),
+      reference: payment.reference,
+      id: payment.id,
+      status: payment.status,
+    });
+
     res.send(payment);
   } catch (error) {
     console.log(error);
@@ -90,9 +124,14 @@ router.post("/getPayment", async (req, res) => {
   }
 });
 
-// Show the 3DS Outcome Page
-router.get("/outcome", (req, res) => {
-  res.sendFile(path.join(__dirname, "../front-end/checkout-page/outcome.html"));
+router.post("/getPayment", async (req, res) => {
+  try {
+    let payment = await cko.payments.get(req.body.id);
+    res.send(payment);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
 });
 
 module.exports = router;

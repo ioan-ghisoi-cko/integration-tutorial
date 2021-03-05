@@ -21,6 +21,14 @@
             </span>
         </div>
 
+        <div class="wallets">
+            <h3>Express Checkout</h3>
+            <div id="google-pay-container"></div>
+
+            <div class="hr-container"><span class="hr-text">OR</span></div>
+        </div>
+        </div>
+
         <!-- Checkout Frames -->
         <div id="payment-form">
             <div class="one-liner">
@@ -49,6 +57,10 @@
     <!-- Checkout.Frames CDN -->
     <script src="https://cdn.checkout.com/js/framesv2.min.js"></script>
     <script src="checkout-page/checkout.js"></script>
+
+    <!-- For Google Pay -->
+    <script async src="https://pay.google.com/gp/p/js/pay.js"
+        onload="onGooglePayLoaded()"></script>
 </body>
 
 </html>
